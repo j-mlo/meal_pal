@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from meal_planner.views import views as  planner_views
+from meal_planner import views as  planner_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
