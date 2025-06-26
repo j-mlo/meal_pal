@@ -1,0 +1,1 @@
+web: gunicorn meal_pal.wsgi
