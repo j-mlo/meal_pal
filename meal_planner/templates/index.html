@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Weekly Meal Plan{% endblock %}
+
+{% block content %}
+
+<h1>Weekly Meal Plan</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    <table>
+        <thead>
+            <tr>
+                <th>Day</th>
+                {% for meal_type in meal_types %}
+                    <th>{{ meal_type.1 }}</th>
+                {% end for %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for day_code, day_label in days %}
+            <tr>
+                <td>{{ day_label }}</td>
+                {% for meal_type_code, meal_type_label in meal_types %}
+                    <td>
+                        {% for form in formset.forms %}
+                            {% if form.instance.day == day_code and form.instance.meal_type == meal_type.code %}
+                              {{ form.recipe }}
+                          {% endif %}
+                        {% endfor %}
+                    </td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <button type="submit">Save Plan</button>
+</form>
+
+{% endblock %}
