@@ -1,6 +1,4 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.db import models
 
 # Create your views here.
-def meal_plan(request):
-    return HttpResponse("Here goes the weekly meal planner")
